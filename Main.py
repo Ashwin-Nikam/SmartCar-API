@@ -11,8 +11,15 @@ engine = "/actionEngineService"
 def gm_api_post(service):
     request_url = BASE_URL + service
     if service == engine:
-        payload = {'id': '1234', 'command': "START_VEHICLE|STOP_VEHICLE",
+        user_input = input("Do you want to start or stop the engine? [START/STOP]")
+        if user_input == 'START':
+            payload = {'id': '1234', 'command': "START_VEHICLE",
                    'responseType': 'JSON'}
+        elif user_input == 'STOP':
+            payload = {'id': '1234', 'command': "STOP_VEHICLE",
+                       'responseType': 'JSON'}
+        else:
+            return "Invalid input"
     else:
         payload = {'id': '1234', 'responseType': 'JSON'}
     headers = {'Content-Type': 'application/json'}
@@ -25,3 +32,5 @@ print()
 print(gm_api_post(security))
 print()
 print(gm_api_post(energy_level))
+print()
+print(gm_api_post(engine))
