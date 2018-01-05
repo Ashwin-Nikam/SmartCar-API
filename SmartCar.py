@@ -73,8 +73,21 @@ def start_stop_engine():
     return info
 
 
-print(parse_vehicle_info())
-print(parse_security_info())
-print(parse_fuel_info())
-print(parse_battery_info())
-print(start_stop_engine())
+
+
+
+def api_call(request_url):
+    request = request_url.split()
+    if request[0] == "GET":
+        print("GET URL")
+    elif request[0] == "POST":
+        print("POST URL")
+    else:
+        print("Invalid API call")
+
+
+# print(parse_vehicle_info())
+# print(parse_security_info())
+# print(parse_fuel_info())
+# print(parse_battery_info())
+# print(start_stop_engine())
