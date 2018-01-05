@@ -8,7 +8,7 @@ energy_level = "/getEnergyService"
 engine = "/actionEngineService"
 
 
-def gm_api_post(service):
+def post_request(service):
     request_url = BASE_URL + service
     if service == engine:
         user_input = input("Do you want to start or stop the engine? [START/STOP]")
