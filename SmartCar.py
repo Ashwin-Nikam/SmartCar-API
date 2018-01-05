@@ -1,6 +1,5 @@
 import GeneralMotors as gm
 
-BASE_URL = 'http://gmapi.azurewebsites.net'
 vehicle_info = "/getVehicleInfoService"
 security = "/getSecurityStatusService"
 energy_level = "/getEnergyService"
