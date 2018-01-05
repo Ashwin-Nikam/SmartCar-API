@@ -12,21 +12,21 @@ class Vehicle(models.Model):
 
 
 class Security(models.Model):
-    vehicle = models.ForeignKey(Vehicle)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     location = models.CharField(max_length=50)
     locked = models.BooleanField()
 
 
 class Fuel(models.Model):
-    vehicle = models.ForeignKey(Vehicle)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     percent = models.FloatField()
 
 
 class Battery(models.Model):
-    vehicle = models.ForeignKey(Vehicle)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     percent = models.FloatField()
 
 
 class Engine(models.Model):
-    vehicle = models.ForeignKey(Vehicle)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     status = models.CharField(max_length=50)
