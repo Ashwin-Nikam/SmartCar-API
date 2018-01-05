@@ -1,6 +1,4 @@
 from django.http import HttpResponse
-from utilities import GeneralMotors
-from utilities import SmartCar
 
 # Create your views here.
 

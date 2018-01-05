@@ -2,5 +2,5 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^vehicles/', views.index, name='index')
+    url(r'^vehicles/\d{4}', views.index, name='index')
 ]
