@@ -8,7 +8,7 @@ engine = "/actionEngineService"
 
 def parse_vehicle_info(id):
     info = {}
-    vehicle_info_json = gm.post_request(vehicle_info, id)
+    vehicle_info_json = gm.post_request(vehicle_info, id, None, None)
     data = vehicle_info_json['data']
     color = data['color']['value']
     info["color"] = color
@@ -28,7 +28,7 @@ def parse_vehicle_info(id):
 
 def parse_security_info(id):
     info = []
-    security_info_json = gm.post_request(security, id)
+    security_info_json = gm.post_request(security, id, None, None)
     doors = security_info_json['data']['doors']['values']
     for door in doors:
         if door['locked']['value'] == 'True':
@@ -42,7 +42,7 @@ def parse_security_info(id):
 
 def parse_fuel_info(id):
     info = {}
-    fuel_info_json = gm.post_request(energy_level, id)
+    fuel_info_json = gm.post_request(energy_level, id, None, None)
     data = fuel_info_json['data']
     tank_level = data['tankLevel']['value']
     info['percent'] = tank_level
@@ -51,16 +51,16 @@ def parse_fuel_info(id):
 
 def parse_battery_info(id):
     info = {}
-    battery_info_json = gm.post_request(energy_level, id)
+    battery_info_json = gm.post_request(energy_level, id, None, None)
     data = battery_info_json['data']
     battery_level = data['batteryLevel']['value']
     info['percent'] = battery_level
     return info
 
 
-def start_stop_engine(id):
+def start_stop_engine(id, content_type, action):
     info = {}
-    engine_info_json = gm.post_request(engine, id)
+    engine_info_json = gm.post_request(engine, id, content_type, action)
     if engine_info_json == "Invalid input":
         print(engine_info_json)
         return
@@ -92,11 +92,19 @@ def get_request(request_body):
         print("error")
 
 
+def post_request(request_url):
+        request = request_url.split()
+        main_call = request[1].split("/")
+        id = main_call[2]
+        content_type = request[3]
+        action = request[6]
+        print(start_stop_engine(id, content_type, action))
+
 def api_call(request_url):
     request = request_url.split()
     if request[0] == "GET":
         get_request(request[1])
     elif request[0] == "POST":
-        print("POST URL")
+        post_request(request_url)
     else:
         print("Invalid API call")

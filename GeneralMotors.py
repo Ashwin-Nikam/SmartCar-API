@@ -1,24 +1,26 @@
+import SmartCar as sc
 import requests
 import json
-import SmartCar as sc
 
 BASE_URL = 'http://gmapi.azurewebsites.net'
 
 
-def post_request(service, id):
+def post_request(service, id, content_type, action):
     request_url = BASE_URL + service
     if service == sc.engine:
-        user_input = input("Do you want to start or stop the engine? [START/STOP]")
-        if user_input == 'START':
+        if action == '"START"':
             payload = {'id': id, 'command': "START_VEHICLE",
                        'responseType': 'JSON'}
-        elif user_input == 'STOP':
+        elif action == '"STOP"':
             payload = {'id': id, 'command': "STOP_VEHICLE",
                        'responseType': 'JSON'}
         else:
             return "Invalid input"
     else:
         payload = {'id': id, 'responseType': 'JSON'}
-    headers = {'Content-Type': 'application/json'}
+    if content_type is not None:
+        headers = {'Content-Type': content_type}
+    else:
+        headers = {'Content-Type': 'application/json'}
     response = requests.post(request_url, headers=headers, data=json.dumps(payload)).json()
     return response
