@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -75,3 +76,26 @@ class BatteryInfo(APIView):
 
     def post(self):
         pass
+
+
+class Engine(APIView):
+    def get(self, request, id):
+        return render(request, 'form.html')
+
+    def post(self, request, id):
+        print(request.POST)
+        return HttpResponse("<H2> Received POST request </H2>")
+
+
+def create(request):
+    print(request.method)
+    if request.method == 'POST':
+        print('*' * 50)
+        print(request.POST)
+        print('*' * 50)
+    else:
+        return redirect('/')
+
+
+def index(request):
+    return render(request, 'form.html')
