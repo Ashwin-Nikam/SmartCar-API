@@ -10,3 +10,27 @@ class VehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
         fields = ('vin', 'color', 'door_count', 'drive_train')
+
+
+class SecuritySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Security
+        fields = ('location', 'locked')
+
+
+class FuelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fuel
+        fields = 'percent'
+
+
+class BatterySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Battery
+        fields = 'percent'
+
+
+class EngineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Engine
+        fields = 'status'
