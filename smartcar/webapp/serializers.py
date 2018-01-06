@@ -9,13 +9,13 @@ from . models import Engine
 class VehicleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehicle
-        fields = ('vin', 'color', 'door_count', 'drive_train')
+        fields = ['vin', 'color', 'door_count', 'drive_train']
 
 
 class SecuritySerializer(serializers.ModelSerializer):
     class Meta:
         model = Security
-        fields = ('location', 'locked')
+        fields = ['location', 'locked']
 
 
 class FuelSerializer(serializers.ModelSerializer):
