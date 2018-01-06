@@ -22,22 +22,7 @@ from . models import Engine
 id = 1234
 
 
-def security(request):
-    print(sc.parse_security_info(id))
-    return HttpResponse("<H2> Security </H2>")
-
-
-def fuel(request):
-    print(sc.parse_fuel_info(id))
-    return HttpResponse("<H2> Fuel </H2>")
-
-
-def battery(request):
-    print(sc.parse_battery_info(id))
-    return HttpResponse("<H2> Battery </H2>")
-
-
-class VehicleList(APIView):
+class VehicleInfo(APIView):
     def get(self, request):
         info = sc.parse_vehicle_info(id)
         vehicle = Vehicle()
@@ -52,7 +37,7 @@ class VehicleList(APIView):
         pass
 
 
-class SecurityList(APIView):
+class SecurityInfo(APIView):
     def get(self, request):
         info = sc.parse_security_info(id)
         security_list = []
@@ -68,7 +53,7 @@ class SecurityList(APIView):
         pass
 
 
-class FuelList(APIView):
+class FuelInfo(APIView):
     def get(self, request):
         info = sc.parse_fuel_info(id)
         fuel = Fuel()
@@ -80,7 +65,7 @@ class FuelList(APIView):
         pass
 
 
-class BatteryList(APIView):
+class BatteryInfo(APIView):
     def get(self, request):
         info = sc.parse_battery_info(id)
         battery = Battery()
