@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.request import Request
 from .serializers import VehicleSerializer
 from .serializers import SecuritySerializer
 from .serializers import BatterySerializer
@@ -19,11 +20,10 @@ from . models import Engine
 
 
 # Create your views here.
-id = 1234
 
 
 class VehicleInfo(APIView):
-    def get(self, request):
+    def get(self, request, id):
         info = sc.parse_vehicle_info(id)
         vehicle = Vehicle()
         vehicle.color = info['color']
@@ -38,7 +38,7 @@ class VehicleInfo(APIView):
 
 
 class SecurityInfo(APIView):
-    def get(self, request):
+    def get(self, request, id):
         info = sc.parse_security_info(id)
         security_list = []
         for element in info:
@@ -54,7 +54,7 @@ class SecurityInfo(APIView):
 
 
 class FuelInfo(APIView):
-    def get(self, request):
+    def get(self, request, id):
         info = sc.parse_fuel_info(id)
         fuel = Fuel()
         fuel.percent = info['percent']
@@ -66,7 +66,7 @@ class FuelInfo(APIView):
 
 
 class BatteryInfo(APIView):
-    def get(self, request):
+    def get(self, request, id):
         info = sc.parse_battery_info(id)
         battery = Battery()
         battery.percent = info['percent']
