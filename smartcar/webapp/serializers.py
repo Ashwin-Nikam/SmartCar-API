@@ -21,16 +21,16 @@ class SecuritySerializer(serializers.ModelSerializer):
 class FuelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fuel
-        fields = 'percent'
+        fields = ['percent']
 
 
 class BatterySerializer(serializers.ModelSerializer):
     class Meta:
         model = Battery
-        fields = 'percent'
+        fields = ['percent']
 
 
 class EngineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Engine
-        fields = 'status'
+        fields = ['status']

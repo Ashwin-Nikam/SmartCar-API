@@ -19,12 +19,12 @@ class Security(models.Model):
 
 class Fuel(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    percent = models.FloatField()
+    percent = models.CharField(max_length=50)
 
 
 class Battery(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
-    percent = models.FloatField()
+    percent = models.CharField(max_length=50)
 
 
 class Engine(models.Model):
