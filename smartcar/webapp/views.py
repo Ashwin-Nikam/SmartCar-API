@@ -10,6 +10,7 @@ from .serializers import SecuritySerializer
 from .serializers import BatterySerializer
 from .serializers import FuelSerializer
 from .serializers import EngineSerializer
+from rest_framework.decorators import api_view
 
 import SmartCar as sc
 
@@ -79,23 +80,23 @@ class BatteryInfo(APIView):
 
 
 class Engine(APIView):
+    main_id = None
+
     def get(self, request, id):
-        return render(request, 'form.html')
+        Engine.main_id = id
+        return Response()
+        # return render(request, 'form.html')
 
     def post(self, request, id):
-        print(request.POST)
-        return HttpResponse("<H2> Received POST request </H2>")
+        
+        return Response({'received data': request.data})
 
-
-def create(request):
-    print(request.method)
-    if request.method == 'POST':
-        print('*' * 50)
-        print(request.POST)
-        print('*' * 50)
-    else:
-        return redirect('/')
-
-
-def index(request):
-    return render(request, 'form.html')
+    @api_view(['GET', 'POST', ])
+    def create(request):
+        action = request.POST['action']
+        content_type = request.POST['content-type']
+        info = sc.start_stop_engine(Engine.main_id, content_type, action)
+        engine = Engine()
+        engine.status = info['status']
+        serializer = EngineSerializer(engine)
+        return Response(serializer.data)
