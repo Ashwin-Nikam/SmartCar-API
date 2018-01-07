@@ -1,6 +1,8 @@
 from django.test import TestCase
 import SmartCar as sc
 import GeneralMotors as gm
+import requests
+import json
 
 # Create your tests here.
 
@@ -31,7 +33,7 @@ class GeneralMotorsApiTest(TestCase):
             response = gm.post_request(service, id, None, None)
             self.assertEquals(response['status'], '200')
 
-    def test_start_stop(self):
+    def test_engine(self):
         service = sc.engine
         actions = ["START", "STOP"]
         for id in ids:
@@ -40,7 +42,7 @@ class GeneralMotorsApiTest(TestCase):
                 self.assertEquals(response['status'], '200')
 
 
-class SmartCarApiTest(TestCase):
+class SmartCarImplementationTest(TestCase):
     def test_vehicle_info(self):
         for id in ids:
             response = sc.parse_vehicle_info(id)
@@ -68,7 +70,7 @@ class SmartCarApiTest(TestCase):
             self.assertNotEqual(response1, 'Status code other than 200 received!')
             self.assertNotEqual(response2, 'Status code other than 200 received!')
 
-    def test_start_stop(self):
+    def test_engine(self):
         for id in ids:
             content_type = 'application/json'
             actions = ['START', 'STOP']
@@ -80,3 +82,57 @@ class SmartCarApiTest(TestCase):
         response = sc.parse_vehicle_info(1236)
         self.assertEquals(response, 'Status code other than 200 received!')
 
+
+class SmartCarApiTest(TestCase):
+
+    BASE_URL = 'http://localhost:8000/vehicles/'
+
+    def test_vehicle_info(self):
+        for id in ids:
+            request_url = (SmartCarApiTest.BASE_URL + '%d') % id
+            response = requests.get(request_url)
+            self.assertEquals(response.status_code, 200)
+            response = response.json()
+            if id == 1234:
+                self.assertEquals(response['vin'], '123123412412')
+                self.assertEquals(response['color'], 'Metallic Silver')
+                self.assertEquals(response['doorCount'], 4)
+                self.assertEquals(response['driveTrain'], 'v8')
+            elif id == 1235:
+                self.assertEquals(response['vin'], '1235AZ91XP')
+                self.assertEquals(response['color'], 'Forest Green')
+                self.assertEquals(response['doorCount'], 2)
+                self.assertEquals(response['driveTrain'], 'electric')
+
+    def test_security(self):
+        for id in ids:
+            request_url = (SmartCarApiTest.BASE_URL + '%d/doors') % id
+            response = requests.get(request_url)
+            self.assertEquals(response.status_code, 200)
+
+    def test_fuel(self):
+        for id in ids:
+            request_url = (SmartCarApiTest.BASE_URL + '%d/fuel') % id
+            response = requests.get(request_url)
+            self.assertEquals(response.status_code, 200)
+
+    def test_battery(self):
+        for id in ids:
+            request_url = (SmartCarApiTest.BASE_URL + '%d/battery') % id
+            response = requests.get(request_url)
+            self.assertEquals(response.status_code, 200)
+
+    def test_engine(self):
+        headers = {'Content-Type': 'application/json'}
+        actions = ["START", "STOP"]
+        for id in ids:
+            request_url = (SmartCarApiTest.BASE_URL + '%d/engine') % id
+            for action in actions:
+                payload = {"action": action}
+                response = requests.post(request_url, headers=headers, data=json.dumps(payload))
+                self.assertEquals(response.status_code, 200)
+
+    def test_non_working_case(self):
+        request_url = (SmartCarApiTest.BASE_URL + '%d') % 1236
+        response = requests.get(request_url)
+        self.assertNotEqual(response.status_code, 200)
