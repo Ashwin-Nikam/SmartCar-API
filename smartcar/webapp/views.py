@@ -84,12 +84,14 @@ class Engine(APIView):
 
     def get(self, request, id):
         Engine.main_id = id
-        # return Response()
-        return render(request, 'form.html')
+        return Response()
+        # return render(request, 'form.html')
 
     def post(self, request, id):
-
-        return Response({'received data': request.data})
+        print(id)
+        print(request.content_type)
+        print(request.data)
+        return Response()
 
     @api_view(['GET', 'POST', ])
     def create(request):
