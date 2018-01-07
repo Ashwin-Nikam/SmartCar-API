@@ -7,6 +7,7 @@ from .serializers import SecuritySerializer
 from .serializers import BatterySerializer
 from .serializers import FuelSerializer
 from .serializers import EngineSerializer
+from django.http import HttpResponse
 
 import SmartCar as sc
 
@@ -87,3 +88,7 @@ class Engine(APIView):
         engine.status = info['status']
         serializer = EngineSerializer(engine)
         return Response(serializer.data)
+
+
+def home(request):
+    return HttpResponse("<H1> Home </H1>")
