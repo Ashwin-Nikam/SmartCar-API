@@ -1,16 +1,12 @@
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.shortcuts import render, redirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.request import Request
 from .serializers import VehicleSerializer
 from .serializers import SecuritySerializer
 from .serializers import BatterySerializer
 from .serializers import FuelSerializer
 from .serializers import EngineSerializer
-from rest_framework.decorators import api_view
 
 import SmartCar as sc
 
@@ -80,27 +76,13 @@ class BatteryInfo(APIView):
 
 
 class Engine(APIView):
-    main_id = None
-
     def get(self, request, id):
-        Engine.main_id = id
         return Response()
-        # return render(request, 'form.html')
 
     def post(self, request, id):
         content_type = request.content_type
         action = request.data['action']
-        info = sc.start_stop_engine(Engine.main_id, content_type, action)
-        engine = Engine()
-        engine.status = info['status']
-        serializer = EngineSerializer(engine)
-        return Response(serializer.data)
-
-    @api_view(['GET', 'POST', ])
-    def create(request):
-        action = request.POST['action']
-        content_type = request.POST['content-type']
-        info = sc.start_stop_engine(Engine.main_id, content_type, action)
+        info = sc.start_stop_engine(id, content_type, action)
         engine = Engine()
         engine.status = info['status']
         serializer = EngineSerializer(engine)
