@@ -5,16 +5,6 @@ import GeneralMotors as gm
 # Create your tests here.
 
 
-class TestBasic(TestCase):
-    def test_basic(self):
-        a = 1
-        self.assertEqual(1, a)
-
-    def test_basic_2(self):
-        a = 1
-        assert a == 1
-
-
 class GeneralMotorsApiTest(TestCase):
     ids = [1234, 1235]
 
@@ -23,9 +13,28 @@ class GeneralMotorsApiTest(TestCase):
         for id in GeneralMotorsApiTest.ids:
             response = gm.post_request(service, id, None, None)
             self.assertEquals(response['status'], '200')
+            color = response['data']['color']['value']
+            if id == 1234:
+                self.assertEquals(color, 'Metallic Silver')
+            elif id == 1235:
+                self.assertEquals(color, 'Forest Green')
 
-    def test_vehicle_info(self):
-        service = sc.vehicle_info
+    def test_security(self):
+        service = sc.security
         for id in GeneralMotorsApiTest.ids:
             response = gm.post_request(service, id, None, None)
             self.assertEquals(response['status'], '200')
+
+    def test_fuel_and_battery(self):
+        service = sc.energy_level
+        for id in GeneralMotorsApiTest.ids:
+            response = gm.post_request(service, id, None, None)
+            self.assertEquals(response['status'], '200')
+
+    def test_start_stop(self):
+        service = sc.engine
+        commands = ["START", "STOP"]
+        for id in GeneralMotorsApiTest.ids:
+            for command in commands:
+                response = gm.post_request(service, id, None, command)
+                self.assertEquals(response['status'], '200')

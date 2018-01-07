@@ -14,8 +14,6 @@ def post_request(service, id, content_type, action):
         elif action == 'STOP':
             payload = {'id': id, 'command': "STOP_VEHICLE",
                        'responseType': 'JSON'}
-        else:
-            return "Invalid input"
     else:
         payload = {'id': id, 'responseType': 'JSON'}
     if content_type is not None:
