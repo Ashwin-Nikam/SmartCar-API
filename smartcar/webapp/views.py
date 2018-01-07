@@ -88,10 +88,13 @@ class Engine(APIView):
         # return render(request, 'form.html')
 
     def post(self, request, id):
-        print(id)
-        print(request.content_type)
-        print(request.data)
-        return Response()
+        content_type = request.content_type
+        action = request.data['action']
+        info = sc.start_stop_engine(Engine.main_id, content_type, action)
+        engine = Engine()
+        engine.status = info['status']
+        serializer = EngineSerializer(engine)
+        return Response(serializer.data)
 
     @api_view(['GET', 'POST', ])
     def create(request):
