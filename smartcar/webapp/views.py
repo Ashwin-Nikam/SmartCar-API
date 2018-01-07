@@ -27,9 +27,9 @@ class VehicleInfo(APIView):
         info = sc.parse_vehicle_info(id)
         vehicle = Vehicle()
         vehicle.color = info['color']
-        vehicle.door_count = info['doorCount']
+        vehicle.doorCount = info['doorCount']
         vehicle.vin = info['vin']
-        vehicle.drive_train = info['driveTrain']
+        vehicle.driveTrain = info['driveTrain']
         serializer = VehicleSerializer(vehicle)
         return Response(serializer.data)
 
