@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from rest_framework.urlpatterns import format_suffix_patterns
-
+from webapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', include('webapp.urls')),
+    url(r'vehicles/(?P<id>\d{4})$', views.VehicleInfo.as_view()),
+    url(r'vehicles/(?P<id>\d{4})/doors$', views.SecurityInfo.as_view()),
+    url(r'vehicles/(?P<id>\d{4})/fuel$', views.FuelInfo.as_view()),
+    url(r'vehicles/(?P<id>\d{4})/battery$', views.BatteryInfo.as_view()),
+    url(r'vehicles/(?P<id>\d{4})/engine$', views.Engine.as_view()),
+    url(r'^$', views.home)
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

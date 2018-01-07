@@ -2,12 +2,13 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
+
 from .serializers import VehicleSerializer
 from .serializers import SecuritySerializer
 from .serializers import BatterySerializer
 from .serializers import FuelSerializer
 from .serializers import EngineSerializer
-from django.http import HttpResponse
 
 import SmartCar as sc
 
@@ -91,4 +92,4 @@ class Engine(APIView):
 
 
 def home(request):
-    return HttpResponse("<H1> Home </H1>")
+    return render(request, 'index.html')
