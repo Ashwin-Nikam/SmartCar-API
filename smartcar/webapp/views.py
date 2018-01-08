@@ -1,26 +1,31 @@
-from django.shortcuts import get_object_or_404
+"""
+Views for the SmartCar API
+Created views for each GET/POST request to the SmartCar API.
+Whenever the SmartCar API is called, one of the following views
+is triggered which calls the corresponding method in the
+SmartCar.py file. The returned dictionary is used to create an
+object of the model corresponding to the request. This object
+is passed to the serializer to get the json response which is
+then returned by the API.
+"""
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
 from django.shortcuts import render
-
 from .serializers import VehicleSerializer
 from .serializers import SecuritySerializer
 from .serializers import BatterySerializer
 from .serializers import FuelSerializer
 from .serializers import EngineSerializer
-
-import SmartCar as sc
-
 from . models import Vehicle
 from . models import Security
 from . models import Fuel
 from . models import Battery
 from . models import Engine
+import SmartCar as sc
 
 
 # Create your views here.
-
 
 class VehicleInfo(APIView):
     def get(self, request, id):

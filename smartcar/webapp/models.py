@@ -1,3 +1,10 @@
+"""
+Models for SmartCar API
+Created models for each type of request. Each models contains
+the variables necessary for creating a response using the
+serializer, according to the specifications.
+"""
+
 from django.db import models
 
 # Create your models here.

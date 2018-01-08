@@ -1,3 +1,10 @@
+"""
+Serializers for SmartCar API
+Created serializers for each GET/POST request to the
+SmartCar API. Each serializer creates a json response
+which contain the fields specified in the fields[] list.
+"""
+
 from rest_framework import serializers
 from . models import Vehicle
 from . models import Security
