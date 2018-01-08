@@ -86,9 +86,9 @@ This indicates that all the test cases have been passed. <br />
 Else you'll get _FAILED_ message indicating some/all tests have failed.
 
 ## Tools and Technologies used
-* [Python](https://www.python.org/)
-* [Django](https://www.djangoproject.com)
 * [Django Rest Framework](http://www.django-rest-framework.org/)
+* [Django](https://www.djangoproject.com)
+* [Python](https://www.python.org/)
 
 ## Acknowledgments
 * [SmartCar, Inc](https://smartcar.com/)
