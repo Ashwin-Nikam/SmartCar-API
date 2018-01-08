@@ -12,7 +12,6 @@ is then returned by the API.
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from webapp.utilities import SmartCar as sc
 from .models import Battery
 from .models import Engine
@@ -31,6 +30,10 @@ from .serializers import VehicleSerializer
 class VehicleInfo(APIView):
     def get(self, request, id):
         info = sc.get_vehicle_info(id)
+        if info == 'Status code other than 200 received!':
+            response = Response()
+            response.status_code = 404
+            return response
         vehicle = Vehicle()
         vehicle.color = info['color']
         vehicle.doorCount = info['doorCount']
@@ -46,6 +49,10 @@ class VehicleInfo(APIView):
 class SecurityInfo(APIView):
     def get(self, request, id):
         info = sc.get_security(id)
+        if info == 'Status code other than 200 received!':
+            response = Response()
+            response.status_code = 404
+            return response
         security_list = []
         for element in info:
             security = Security()
@@ -62,6 +69,10 @@ class SecurityInfo(APIView):
 class FuelInfo(APIView):
     def get(self, request, id):
         info = sc.get_fuel(id)
+        if info == 'Status code other than 200 received!':
+            response = Response()
+            response.status_code = 404
+            return response
         fuel = Fuel()
         fuel.percent = info['percent']
         serializer = FuelSerializer(fuel)
@@ -74,6 +85,10 @@ class FuelInfo(APIView):
 class BatteryInfo(APIView):
     def get(self, request, id):
         info = sc.get_battery(id)
+        if info == 'Status code other than 200 received!':
+            response = Response()
+            response.status_code = 404
+            return response
         battery = Battery()
         battery.percent = info['percent']
         serializer = BatterySerializer(battery)
@@ -91,6 +106,10 @@ class Engine(APIView):
         content_type = request.content_type
         action = request.data['action']
         info = sc.get_engine(id, content_type, action)
+        if info == 'Status code other than 200 received!':
+            response = Response()
+            response.status_code = 404
+            return response
         engine = Engine()
         engine.status = info['status']
         serializer = EngineSerializer(engine)
