@@ -1,7 +1,6 @@
 """
 Testing
-15 Test cases have been written for testing the SmartCar API
-organized into 3 main classes
+15 tests have been written for testing the SmartCar API organized into 3 main classes
 
 1. GeneralMotorsUtilityTests : Tests for checking whether the GM API responds correctly
                                to requests
@@ -96,7 +95,7 @@ class SmartCarUtilityTests(TestCase):
                 response = sc.get_engine(id, content_type, action)
                 self.assertNotEqual(response, 'Status code other than 200 received!')
 
-    # Testing whether the response from the API contains status code != 200 for fake Vehicle Id 1236
+    # Testing whether the API provides status code indicating error for fake Vehicle Id 1236
     def test_non_working_id(self):
         response = sc.get_vehicle_info(1236)
         self.assertEquals(response, 'Status code other than 200 received!')
@@ -152,7 +151,7 @@ class SmartCarApiTests(TestCase):
                 response = requests.post(request_url, headers=headers, data=json.dumps(payload))
                 self.assertEquals(response.status_code, 200)
 
-    # Testing whether the response from the API contains status code != 200 for fake Vehicle Id 1236
+    # Testing whether the response from  API provides status code other than 200 for fake Vehicle Id 1236
     def test_non_working_case(self):
         request_url = (SmartCarApiTests.BASE_URL + '%d') % 1236
         response = requests.get(request_url)
