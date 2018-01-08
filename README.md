@@ -86,13 +86,13 @@ This indicates that all the test cases have been passed. <br />
 Else, you'll get _FAILED_ message indicating some/all tests have failed.
 
 ## Tools and Technologies used
-* [Django Rest Framework](http://www.django-rest-framework.org/)
-* [Django](https://www.djangoproject.com)
-* [Python](https://www.python.org/)
+* <a href="http://www.django-rest-framework.org/" target="_blank">Django Rest Framework</a>
+* <a href="https://www.djangoproject.com" target="_blank">Django</a>
+* <a href="https://www.python.org/" target="_blank">Python</a>
 
 ## Acknowledgments
-* [SmartCar, Inc](https://smartcar.com/)
+* <a href="https://smartcar.com/" target="_blank">SmartCar, Inc</a>
 
 ## References
-* https://www.youtube.com/watch?v=ejJ-2oz4AgI&t=375s
-* https://www.youtube.com/watch?v=qgGIqRFvFFk&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK
+* <a href="https://www.youtube.com/watch?v=ejJ-2oz4AgI&t=375s" target="_blank" />https://www.youtube.com/watch?v=ejJ-2oz4AgI&t=375s</a>
+* <a href="https://www.youtube.com/watch?v=qgGIqRFvFFk&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK" target="_blank"> https://www.youtube.com/watch?v=qgGIqRFvFFk&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK </a>
