@@ -90,6 +90,9 @@ Else you'll get _FAILED_ message indicating some/all tests have failed.
 * [Django](https://www.djangoproject.com)
 * [Django Rest Framework](http://www.django-rest-framework.org/)
 
+## Acknowledgments
+* [SmartCar, Inc](https://smartcar.com/)
+
 ## References
 * https://www.youtube.com/watch?v=ejJ-2oz4AgI&t=375s
 * https://www.youtube.com/watch?v=qgGIqRFvFFk&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK
