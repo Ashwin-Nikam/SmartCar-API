@@ -53,3 +53,12 @@ For the post request you could type in the command
 ```
 $ curl http://127.0.0.1:8000/vehicles/1ntent-Type: application/json' -d '{"action": "START|STOP"}'
 ```
+## Code Structure
+Following are some files and modules which form the core base of this Restful API implementation. <br />
+* <b>utilities</b> - This folder is inside the smartcar/webapp directory. It contains two main utility files namely _GeneralMotors.py_ and _SmartCar.py_. Functionalities of each file have been explained in the file itself.
+* <b>models.py</b> - Contains models for each type of request. Each models contains the variables necessary for creating a response using the serializer, according to the specifications.
+* <b>serializers.py</b> - Contains serializers for each type of model. Each serializer creates a json response which contain the fields specified in the fields[] list.
+* <b>views.py</b> - Contains views for each GET/POST request to the SmartCar API. Whenever the SmartCar API is called, one of the following views is triggered which calls the corresponding method in the utilities/SmartCar.py file. The returned dictionary is used to create an object of the model corresponding to the request. This object is passed to the serializer to get the json response which is then returned by the API.
+
+## Testing
+Some test cases have been provided to check the functioning of all modules.
