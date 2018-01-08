@@ -9,20 +9,21 @@ is passed to the serializer to get the json response which is
 then returned by the API.
 """
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from django.shortcuts import render
-from .serializers import VehicleSerializer
-from .serializers import SecuritySerializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from webapp.utilities import SmartCar as sc
+from .models import Battery
+from .models import Engine
+from .models import Fuel
+from .models import Security
+from .models import Vehicle
 from .serializers import BatterySerializer
-from .serializers import FuelSerializer
 from .serializers import EngineSerializer
-from . models import Vehicle
-from . models import Security
-from . models import Fuel
-from . models import Battery
-from . models import Engine
-import SmartCar as sc
+from .serializers import FuelSerializer
+from .serializers import SecuritySerializer
+from .serializers import VehicleSerializer
 
 
 # Create your views here.

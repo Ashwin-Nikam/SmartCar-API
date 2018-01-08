@@ -14,9 +14,11 @@ post_request() has 4 parameters
                  for determining whether to START/STOP engine. It is set to None otherwise.
 """
 
-import SmartCar as sc
-import requests
 import json
+
+import requests
+
+from webapp.utilities import SmartCar as sc
 
 BASE_URL = 'http://gmapi.azurewebsites.net'
 

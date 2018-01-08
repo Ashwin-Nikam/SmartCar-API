@@ -6,8 +6,7 @@ which is in GeneralMotors.py. The returned json from post_request()
 is parsed and required components are inserted in a dictionary and returned.
 """
 
-
-import GeneralMotors as gm
+from webapp.utilities import GeneralMotors as gm
 
 vehicle_info = "/getVehicleInfoService"
 security = "/getSecurityStatusService"
@@ -22,18 +21,18 @@ def get_vehicle_info(id):
         return 'Status code other than 200 received!'
     data = vehicle_info_json['data']
     color = data['color']['value']
-    info["color"] = color
+    info['color'] = color
     drive_train = data['driveTrain']['value']
-    info["driveTrain"] = drive_train
+    info['driveTrain'] = drive_train
     vin = data['vin']['value']
-    info["vin"] = vin
+    info['vin'] = vin
     if data['fourDoorSedan']['value'] == 'True':
         door_count = 4
     elif data['twoDoorCoupe']['value'] == 'True':
         door_count = 2
     else:
         door_count = None
-    info["doorCount"] = door_count
+    info['doorCount'] = door_count
     return info
 
 
@@ -47,8 +46,8 @@ def get_security(id):
         if door['locked']['value'] == 'True':
             locked_door = {}
             location = door['location']['value']
-            locked_door["location"] = location
-            locked_door["locked"] = "true"
+            locked_door['location'] = location
+            locked_door['locked'] = "true"
             info.append(locked_door)
     return info
 

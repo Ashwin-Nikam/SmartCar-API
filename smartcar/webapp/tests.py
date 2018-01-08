@@ -1,8 +1,9 @@
-from django.test import TestCase
-import SmartCar as sc
-import GeneralMotors as gm
-import requests
 import json
+
+import requests
+from django.test import TestCase
+
+from webapp.utilities import GeneralMotors as gm, SmartCar as sc
 
 # Create your tests here.
 
