@@ -41,7 +41,7 @@ http://127.0.0.1:8000
 If you see the word **Localhost** in the browser you have the server up and running.
 
 ## Making requests to the API
-Now you can make the following requests to the API and check the responses.
+Now you can make the following requests to the API and check the responses. Execute the following commands in the terminal.
 ```
 $ curl http://127.0.0.1:8000/vehicles/1234
 $ curl http://127.0.0.1:8000/vehicles/1234/doors
@@ -49,7 +49,7 @@ $ curl http://127.0.0.1:8000/vehicles/1234/fuel
 $ curl http://127.0.0.1:8000/vehicles/1234/battery
 ```
 You could also run these URLs in the browser and see the responses. <br /> <br />
-For the post request you could type in the command
+For the post request you could type in the following command in the terminal.
 ```
 $ curl http://127.0.0.1:8000/vehicles/1234/engine -H 'Content-Type: application/json' -d '{"action": "START|STOP"}'
 ```
@@ -86,13 +86,13 @@ This indicates that all the test cases have been passed. <br />
 Else, you'll get _FAILED_ message indicating some/all tests have failed.
 
 ## Tools and Technologies used
-* <a href="http://www.django-rest-framework.org/" target="_blank">Django Rest Framework</a>
-* <a href="https://www.djangoproject.com" target="_blank">Django</a>
-* <a href="https://www.python.org/" target="_blank">Python</a>
+* [Django Rest Framework](http://www.django-rest-framework.org/)
+* [Django](https://www.djangoproject.com)
+* [Python](https://www.python.org/)
 
 ## Acknowledgments
-* <a href="https://smartcar.com/" target="_blank">SmartCar, Inc</a>
+* [SmartCar, Inc](https://smartcar.com/)
 
 ## References
-* <a href="https://www.youtube.com/watch?v=ejJ-2oz4AgI&t=375s" target="_blank" />https://www.youtube.com/watch?v=ejJ-2oz4AgI&t=375s</a>
-* <a href="https://www.youtube.com/watch?v=qgGIqRFvFFk&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK" target="_blank"> https://www.youtube.com/watch?v=qgGIqRFvFFk&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK </a>
+* https://www.youtube.com/watch?v=ejJ-2oz4AgI&t=375s
+* https://www.youtube.com/watch?v=qgGIqRFvFFk&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK
