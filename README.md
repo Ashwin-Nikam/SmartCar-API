@@ -1,5 +1,5 @@
 # SmartCar-API
-Restful API for SmartCar which makes HTTP requests to the GM API and returns the information into a cleaner format.
+Restful API for SmartCar which makes HTTP requests to the GM API and returns the information in a cleaner format.
 
 ## Initial Setup
 * Make sure you have python 3 or a higher version installed.
@@ -84,3 +84,12 @@ OK
 ```
 This indicates that all the test cases have been passed. <br />
 Else you'll get _FAILED_ message indicating some/all tests have failed.
+
+## Tools and Technologies used
+* [Python](https://www.python.org/)
+* [Django](https://www.djangoproject.com)
+* [Django Rest Framework](http://www.django-rest-framework.org/)
+
+## References
+* https://www.youtube.com/watch?v=ejJ-2oz4AgI&t=375s
+* https://www.youtube.com/watch?v=qgGIqRFvFFk&list=PL6gx4Cwl9DGBlmzzFcLgDhKTTfNLfX1IK
