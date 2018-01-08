@@ -24,7 +24,7 @@ from . models import Engine
 
 class VehicleInfo(APIView):
     def get(self, request, id):
-        info = sc.parse_vehicle_info(id)
+        info = sc.get_vehicle_info(id)
         vehicle = Vehicle()
         vehicle.color = info['color']
         vehicle.doorCount = info['doorCount']
@@ -39,7 +39,7 @@ class VehicleInfo(APIView):
 
 class SecurityInfo(APIView):
     def get(self, request, id):
-        info = sc.parse_security_info(id)
+        info = sc.get_security(id)
         security_list = []
         for element in info:
             security = Security()
@@ -55,7 +55,7 @@ class SecurityInfo(APIView):
 
 class FuelInfo(APIView):
     def get(self, request, id):
-        info = sc.parse_fuel_info(id)
+        info = sc.get_fuel(id)
         fuel = Fuel()
         fuel.percent = info['percent']
         serializer = FuelSerializer(fuel)
@@ -67,7 +67,7 @@ class FuelInfo(APIView):
 
 class BatteryInfo(APIView):
     def get(self, request, id):
-        info = sc.parse_battery_info(id)
+        info = sc.get_battery(id)
         battery = Battery()
         battery.percent = info['percent']
         serializer = BatterySerializer(battery)
@@ -84,7 +84,7 @@ class Engine(APIView):
     def post(self, request, id):
         content_type = request.content_type
         action = request.data['action']
-        info = sc.start_stop_engine(id, content_type, action)
+        info = sc.get_engine(id, content_type, action)
         engine = Engine()
         engine.status = info['status']
         serializer = EngineSerializer(engine)

@@ -1,3 +1,19 @@
+"""
+Main API call to the General Motors API
+post_request() : calls the General Motors API and returns the response in json format.
+post_request has 4 parameters
+
+1. service: Determines which POST request has to be made (eg: /getVehicleInfoService,
+            /getEnergyService etc)
+
+2. id: Vehicle Id (eg: 1234, 1235 etc)
+
+3. content_type: The MIME type of the content
+
+4. action: This parameter is only required for determining whether to START/STOP engine.
+           None otherwise.
+"""
+
 import SmartCar as sc
 import requests
 import json

@@ -1,3 +1,12 @@
+"""
+The SmartCar API implementation
+Each method receives an id as a parameter corresponding to the
+Vehicle ID (eg: 1234, 1235 etc). Each method then calls post_request()
+which is in GeneralMotors.py. The returned json from post_request()
+is parsed and required components are inserted in a dictionary and returned.
+"""
+
+
 import GeneralMotors as gm
 
 vehicle_info = "/getVehicleInfoService"
@@ -6,7 +15,7 @@ energy_level = "/getEnergyService"
 engine = "/actionEngineService"
 
 
-def parse_vehicle_info(id):
+def get_vehicle_info(id):
     info = {}
     vehicle_info_json = gm.post_request(vehicle_info, id, None, None)
     if vehicle_info_json['status'] != '200':
@@ -28,7 +37,7 @@ def parse_vehicle_info(id):
     return info
 
 
-def parse_security_info(id):
+def get_security(id):
     info = []
     security_info_json = gm.post_request(security, id, None, None)
     if security_info_json['status'] != '200':
@@ -44,7 +53,7 @@ def parse_security_info(id):
     return info
 
 
-def parse_fuel_info(id):
+def get_fuel(id):
     info = {}
     fuel_info_json = gm.post_request(energy_level, id, None, None)
     if fuel_info_json['status'] != '200':
@@ -55,7 +64,7 @@ def parse_fuel_info(id):
     return info
 
 
-def parse_battery_info(id):
+def get_battery(id):
     info = {}
     battery_info_json = gm.post_request(energy_level, id, None, None)
     if battery_info_json['status'] != '200':
@@ -66,7 +75,7 @@ def parse_battery_info(id):
     return info
 
 
-def start_stop_engine(id, content_type, action):
+def get_engine(id, content_type, action):
     info = {}
     engine_info_json = gm.post_request(engine, id, content_type, action)
     if engine_info_json['status'] != '200':

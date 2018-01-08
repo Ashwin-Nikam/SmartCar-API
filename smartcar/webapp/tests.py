@@ -45,7 +45,7 @@ class GeneralMotorsApiTest(TestCase):
 class SmartCarImplementationTest(TestCase):
     def test_vehicle_info(self):
         for id in ids:
-            response = sc.parse_vehicle_info(id)
+            response = sc.get_vehicle_info(id)
             self.assertNotEqual(response, 'Status code other than 200 received!')
             if id == 1234:
                 self.assertEquals(response['vin'], '123123412412')
@@ -60,13 +60,13 @@ class SmartCarImplementationTest(TestCase):
 
     def test_security(self):
         for id in ids:
-            response = sc.parse_security_info(id)
+            response = sc.get_security(id)
             self.assertNotEqual(response, 'Status code other than 200 received!')
 
     def test_fuel_battery(self):
         for id in ids:
-            response1 = sc.parse_fuel_info(id)
-            response2 = sc.parse_battery_info(id)
+            response1 = sc.get_fuel(id)
+            response2 = sc.get_battery(id)
             self.assertNotEqual(response1, 'Status code other than 200 received!')
             self.assertNotEqual(response2, 'Status code other than 200 received!')
 
@@ -75,11 +75,11 @@ class SmartCarImplementationTest(TestCase):
             content_type = 'application/json'
             actions = ['START', 'STOP']
             for action in actions:
-                response = sc.start_stop_engine(id, content_type, action)
+                response = sc.get_engine(id, content_type, action)
                 self.assertNotEqual(response, 'Status code other than 200 received!')
 
     def test_non_working_id(self):
-        response = sc.parse_vehicle_info(1236)
+        response = sc.get_vehicle_info(1236)
         self.assertEquals(response, 'Status code other than 200 received!')
 
 
