@@ -53,7 +53,8 @@ For the post request you could type in the command
 ```
 $ curl http://127.0.0.1:8000/vehicles/1ntent-Type: application/json' -d '{"action": "START|STOP"}'
 ```
-## Code Structure
+
+## Implementation Details
 Following are some files and modules which form the core base of this Restful API implementation. <br />
 * <b>utilities</b> - This folder is inside the smartcar/webapp directory. It contains two main utility files namely _GeneralMotors.py_ and _SmartCar.py_. Functionalities of each file have been explained in the file itself.
 * <b>models.py</b> - Contains models for each type of request. Each models contains the variables necessary for creating a response using the serializer, according to the specifications.
@@ -61,4 +62,25 @@ Following are some files and modules which form the core base of this Restful AP
 * <b>views.py</b> - Contains views for each GET/POST request to the SmartCar API. Whenever the SmartCar API is called, one of the following views is triggered which calls the corresponding method in the utilities/SmartCar.py file. The returned dictionary is used to create an object of the model corresponding to the request. This object is passed to the serializer to get the json response which is then returned by the API.
 
 ## Testing
-Some test cases have been provided to check the functioning of all modules.
+Test cases have been provided to check the functioning of all modules. These are written in _tests.py_ file inside webapp/ directory. There are a total of 15 tests which have been written for testing the SmartCar API and are organized into 3 main classes.
+* <b>GeneralMotorsUtilityTests</b> - Tests for checking whether the GM API responds correctly to requests
+* <b>SmartCarUtilityTests</b> - Tests for checking functionality of all the methods in utilities/SmartCar.py
+* <b>SmartCarApiTests</b> - Tests for checking whether the SmartCar API responds correctly to requests
+
+### Directions for testing
+* In order to run the test cases first we make sure the server is running. If not then execute the following command.
+```
+$ python3 manage.py runserver
+```
+* Now that we have our server running we can run the test cases by executing the following command.
+```
+$ python3 manage.py test
+```
+* After running all the test cases the following message should be displayed.
+```
+Ran 15 tests in 21.398s
+
+OK
+```
+This indicates that all the test cases have been passed. <br />
+Else you'll get _FAILED_ message indicating some/all tests have failed.
