@@ -1,3 +1,16 @@
+"""
+Testing
+15 Test cases have been written for testing the SmartCar API
+organized into 3 main classes
+
+1. GeneralMotorsUtilityTests : Tests whether the GM API responds correctly to requests
+
+2. SmartCarUtilityTests:       Tests functioning of all the methods in utilities/SmartCar.py
+
+3. SmartCarApiTests:           Tests whether the SmartCar API responds correctly to requests
+"""
+
+
 import json
 
 import requests
@@ -10,7 +23,7 @@ from webapp.utilities import GeneralMotors as gm, SmartCar as sc
 ids = [1234, 1235]
 
 
-class GeneralMotorsApiTest(TestCase):
+class GeneralMotorsUtilityTests(TestCase):
     def test_vehicle_info(self):
         service = sc.vehicle_info
         for id in ids:
@@ -43,7 +56,7 @@ class GeneralMotorsApiTest(TestCase):
                 self.assertEquals(response['status'], '200')
 
 
-class SmartCarImplementationTest(TestCase):
+class SmartCarUtilityTests(TestCase):
     def test_vehicle_info(self):
         for id in ids:
             response = sc.get_vehicle_info(id)
@@ -84,13 +97,13 @@ class SmartCarImplementationTest(TestCase):
         self.assertEquals(response, 'Status code other than 200 received!')
 
 
-class SmartCarApiTest(TestCase):
+class SmartCarApiTests(TestCase):
 
     BASE_URL = 'http://localhost:8000/vehicles/'
 
     def test_vehicle_info(self):
         for id in ids:
-            request_url = (SmartCarApiTest.BASE_URL + '%d') % id
+            request_url = (SmartCarApiTests.BASE_URL + '%d') % id
             response = requests.get(request_url)
             self.assertEquals(response.status_code, 200)
             response = response.json()
@@ -107,19 +120,19 @@ class SmartCarApiTest(TestCase):
 
     def test_security(self):
         for id in ids:
-            request_url = (SmartCarApiTest.BASE_URL + '%d/doors') % id
+            request_url = (SmartCarApiTests.BASE_URL + '%d/doors') % id
             response = requests.get(request_url)
             self.assertEquals(response.status_code, 200)
 
     def test_fuel(self):
         for id in ids:
-            request_url = (SmartCarApiTest.BASE_URL + '%d/fuel') % id
+            request_url = (SmartCarApiTests.BASE_URL + '%d/fuel') % id
             response = requests.get(request_url)
             self.assertEquals(response.status_code, 200)
 
     def test_battery(self):
         for id in ids:
-            request_url = (SmartCarApiTest.BASE_URL + '%d/battery') % id
+            request_url = (SmartCarApiTests.BASE_URL + '%d/battery') % id
             response = requests.get(request_url)
             self.assertEquals(response.status_code, 200)
 
@@ -127,13 +140,13 @@ class SmartCarApiTest(TestCase):
         headers = {'Content-Type': 'application/json'}
         actions = ["START", "STOP"]
         for id in ids:
-            request_url = (SmartCarApiTest.BASE_URL + '%d/engine') % id
+            request_url = (SmartCarApiTests.BASE_URL + '%d/engine') % id
             for action in actions:
                 payload = {"action": action}
                 response = requests.post(request_url, headers=headers, data=json.dumps(payload))
                 self.assertEquals(response.status_code, 200)
 
     def test_non_working_case(self):
-        request_url = (SmartCarApiTest.BASE_URL + '%d') % 1236
+        request_url = (SmartCarApiTests.BASE_URL + '%d') % 1236
         response = requests.get(request_url)
         self.assertNotEqual(response.status_code, 200)

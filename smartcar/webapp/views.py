@@ -3,10 +3,10 @@ Views for the SmartCar API
 Created views for each GET/POST request to the SmartCar API.
 Whenever the SmartCar API is called, one of the following views
 is triggered which calls the corresponding method in the
-SmartCar.py file. The returned dictionary is used to create an
-object of the model corresponding to the request. This object
-is passed to the serializer to get the json response which is
-then returned by the API.
+utilities/SmartCar.py file. The returned dictionary is used to
+create an object of the model corresponding to the request. This
+object is passed to the serializer to get the json response which
+is then returned by the API.
 """
 
 from django.shortcuts import render
