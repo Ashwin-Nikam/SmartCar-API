@@ -49,7 +49,7 @@ $ curl http://127.0.0.1:8000/vehicles/1234/fuel
 $ curl http://127.0.0.1:8000/vehicles/1234/battery
 ```
 You could also run these URLs in the browser and see the responses. <br /> <br />
-For the post request you could type
+For the post request you could type in the command
 ```
-curl http://127.0.0.1:8000/vehicles/1ntent-Type: application/json' -d '{"action": "START|STOP"}'
+$ curl http://127.0.0.1:8000/vehicles/1ntent-Type: application/json' -d '{"action": "START|STOP"}'
 ```
