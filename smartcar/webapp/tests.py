@@ -151,7 +151,7 @@ class SmartCarApiTests(TestCase):
                 response = requests.post(request_url, headers=headers, data=json.dumps(payload))
                 self.assertEquals(response.status_code, 200)
 
-    # Testing whether the response from  API provides status code other than 200 for fake Vehicle Id 1236
+    # Testing whether the response from API provides status code other than 200 for fake Vehicle Id 1236
     def test_non_working_case(self):
         request_url = (SmartCarApiTests.BASE_URL + '%d') % 1236
         response = requests.get(request_url)
