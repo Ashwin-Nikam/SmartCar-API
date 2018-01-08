@@ -1,13 +1,13 @@
 # SmartCar-API
-Restful API for SmartCar which makes HTTP requests to the GM API and returns the information in a cleaner format.
+Restful API for SmartCar which makes HTTP requests to the GM(General Motors) API and returns the information in a cleaner format.
 
 ## Initial Setup
-* Make sure you have python 3 or a higher version installed.
+* Make sure you have python3 installed.
 * Now we install pip as it makes it easier to download the latest version of Django globally. Execute the following command.
 ```
 $ sudo apt-get install python3-pip
 ```
-* Now we install Django using pip3. To do this execute the following command execute the following command.
+* Now we install Django using pip3. To do this execute the following command.
 ```
 $ sudo pip3 install django 
 ```
@@ -51,7 +51,7 @@ $ curl http://127.0.0.1:8000/vehicles/1234/battery
 You could also run these URLs in the browser and see the responses. <br /> <br />
 For the post request you could type in the command
 ```
-$ curl http://127.0.0.1:8000/vehicles/1ntent-Type: application/json' -d '{"action": "START|STOP"}'
+$ curl http://127.0.0.1:8000/vehicles/1234/engine -H 'Content-Type: application/json' -d '{"action": "START|STOP"}'
 ```
 
 ## Implementation Details
@@ -62,28 +62,28 @@ Following are some files and modules which form the core base of this Restful AP
 * <b>views.py</b> - Contains views for each GET/POST request to the SmartCar API. Whenever the SmartCar API is called, one of the following views is triggered which calls the corresponding method in the utilities/SmartCar.py file. The returned dictionary is used to create an object of the model corresponding to the request. This object is passed to the serializer to get the json response which is then returned by the API.
 
 ## Testing
-Test cases have been provided to check the functioning of all modules. These are written in _tests.py_ file inside webapp/ directory. There are a total of 15 tests which have been written for testing the SmartCar API and are organized into 3 main classes.
+Tests have been provided to check the functioning of all modules. These are written in _tests.py_ file inside webapp/ directory. There are a total of 15 tests which have been written for testing the SmartCar API and are organized into 3 main classes.
 * <b>GeneralMotorsUtilityTests</b> - Tests for checking whether the GM API responds correctly to requests
 * <b>SmartCarUtilityTests</b> - Tests for checking functionality of all the methods in utilities/SmartCar.py
 * <b>SmartCarApiTests</b> - Tests for checking whether the SmartCar API responds correctly to requests
 
 ### Directions for testing
-* In order to run the test cases first we make sure the server is running. If not then execute the following command.
+* In order to run the tests first we make sure the server is running. If not, then execute the following command.
 ```
 $ python3 manage.py runserver
 ```
-* Now that we have our server running we can run the test cases by executing the following command.
+* Now that we have our server running we can run the tests by executing the following command.
 ```
 $ python3 manage.py test
 ```
-* After running all the test cases the following message should be displayed.
+* After running all the tests the following message should be displayed.
 ```
 Ran 15 tests in 21.398s
 
 OK
 ```
 This indicates that all the test cases have been passed. <br />
-Else you'll get _FAILED_ message indicating some/all tests have failed.
+Else, you'll get _FAILED_ message indicating some/all tests have failed.
 
 ## Tools and Technologies used
 * [Django Rest Framework](http://www.django-rest-framework.org/)
