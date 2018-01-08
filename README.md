@@ -32,13 +32,84 @@ $ python3 manage.py runserver
 ```
 * Your server must now be up and running without any errors.
 
-## Calling the SmartCar API
+## The SmartCar API Specifications
 If all the previous steps have been completed successfully your server must be up and running. Now we need to make requests to the SmartCar API and check the responses. <br /> <br />
 Open any internet browser and type in the following URL.
 ```
 http://127.0.0.1:8000
 ```
 If you see the word **Localhost** in the browser you have the server up and running.
+Available IDs which can be used for making API calls to SmartCar endpoints are : **1234**, **1235**
+### Vehicle Info
+#### Request:
+```
+GET /vehicles/:id
+```
+#### Response:
+```
+{
+  "vin": "1213231",
+  "color": "Metallic Silver",
+  "doorCount": 4,
+  "driveTrain": "v8"
+}
+```
+### Security
+#### Request:
+```
+GET /vehicles/:id/doors
+```
+#### Response:
+```
+[
+  {
+    "location": "frontLeft",
+    "locked": true
+  },
+  {
+    "location": "frontRight",
+    "locked": true
+  }
+]
+```
+### Fuel Range
+#### Request:
+```
+GET /vehicles/:id/fuel
+```
+#### Response:
+```
+{
+  "percent": 30
+}
+```
+### Battery Range
+#### Request:
+```
+GET /vehicles/:id/battery
+```
+#### Response:
+```
+{
+  "percent": 50
+}
+```
+### Start/Stop Engine
+#### Request:
+```
+POST /vehicles/:id/engine
+Content-Type: application/json
+
+{
+  "action": "START|STOP"
+}
+```
+#### Response:
+```
+{
+  "status": "success|error"
+}
+```
 
 ## Making requests to the API
 Now you can make the following requests to the API and check the responses. Execute the following commands in the terminal.
