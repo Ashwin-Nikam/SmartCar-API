@@ -95,7 +95,7 @@ class SmartCarUtilityTests(TestCase):
                 response = sc.get_engine(id, content_type, action)
                 self.assertNotEqual(response, 'Status code other than 200 received!')
 
-    # Testing whether the API provides status code indicating error for fake Vehicle Id 1236
+    # Testing whether the API provides response with status code other than 200 for fake Vehicle Id 1236
     def test_non_working_id(self):
         response = sc.get_vehicle_info(1236)
         self.assertEquals(response, 'Status code other than 200 received!')
